@@ -9,3 +9,8 @@ grep -v "^##" mitf.vcf | awk '{print $1, $2}'| sed 's/chr//1' | sed 's/ /_/g' | 
 grep -f mitf_2.vcf variant_effect_output.txt | awk '/HIGH/' > high_mitf_variant_effect.vcf
 uniq high_mitf_variant_effect.vcf > mitf_uniq.vcf
 grep -f mitf_uniq.vcf mitf.vcf > samples.vcf
+
+bcftools view -Ov -r chr20:21839457-21870578 GenotypeGVCFs_output_max50.raw_SNPs.vcf.gz > mitf.vcf
+grep -v "^##" mitf.vcf | awk '{print $1, $2}'| sed 's/chr//1;s/ /_/g' | awk '{$1=$1 "_"}1' > mitf_tomove.vcf #move to SNPs directory
+grep -f mitf_tomove.vcf variant_effect_output.txt | awk '/HIGH/ {print $1}' | sed 's/_/ /g' | awk '{print $2}' | uniq > high_mitf_variant_effect.vcf #move back to varResults file
+grep -f high_mitf_variant_effect.vcf mitf.vcf > mitf_to_excel.vcf
