@@ -49,3 +49,8 @@ mv hla-drb1_tomove.vcf /vol1/INDELs_NCBI.varEffect/
 grep -f hla-drb1_tomove.vcf variant_effect_output.txt | awk '/HIGH/ {print $1}' | sed 's/_/ /g' | awk '{print $2}' | uniq > hla-drb1_variant_effect.vcf
 mv hla-drb1_variant_effect.vcf /vol1/varResults_indels/
 grep -f hla-drb1_variant_effect.vcf hla-drb1.vcf > hla-drb1_indels_to_excel.vcf
+
+#PTDRD, PARD3B, COL15A1, PMEL/SILV, TPP1, PFKM, NPHP4, NES, PRCD, DNM1, NRAS, PTEN, RPE65, SLC4A3
+
+#see pipelines for PNPLA1, PDE5A (different mutation found than in lit)
+
